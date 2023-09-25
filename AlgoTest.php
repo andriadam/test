@@ -166,6 +166,16 @@ function removeDuplicates($arr)
   return array_unique($arr);
 }
 
+function removeDuplicates2($arr)
+{
+  $uniqueArray = [];
+  foreach ($arr as $element) {
+    if (!in_array($element, $uniqueArray)) {
+      $uniqueArray[] = $element;
+    }
+  }
+  return $uniqueArray;
+}
 
 function sumOfSquares($arr)
 {
@@ -182,7 +192,8 @@ function sumOfSquares($arr)
 }
 
 
-function groupAnagrams($arr) {
+function groupAnagrams($arr)
+{
   if (empty($arr)) {
     return [];
   }
@@ -192,8 +203,7 @@ function groupAnagrams($arr) {
     $sortedWord = str_split($word);
     sort($sortedWord);
     $sortedWord = implode('', $sortedWord);
-    if (!
-    array_key_exists($sortedWord, $anagrams)) {
+    if (!array_key_exists($sortedWord, $anagrams)) {
       $anagrams[$sortedWord] = [$word];
     } else {
       $anagrams[$sortedWord][] = $word;
@@ -237,8 +247,22 @@ function findPalindromes($arr)
 }
 
 
+function generateArrayWithSumZero($N)
+{
+  $array = [];
+  $sum = 0;
 
+  for ($i = 1; $i < $N; $i++) {
+    // Menghasilkan bilangan positif acak dan tambahkan ke array
+    $bilangan = rand(1, 100);
+    $array[] = $bilangan;
+    $sum += $bilangan;
+  }
 
+  // Jika N > 1, tambahkan nilai negatif dari jumlah elemen positif ke dalam array
+  if ($N > 1) {
+    $array[] = -$sum;
+  }
 
-
-?>
+  return $array;
+}
