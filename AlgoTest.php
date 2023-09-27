@@ -276,15 +276,6 @@ function faktorial($n)
   }
 }
 
-function faktorial($n)
-{
-  if ($n == 0 || $n == 1) {
-    return 1;
-  } else {
-    return $n * faktorial($n - 1);
-  }
-}
-
 function cariPrimaTerbesar($n)
 {
   for ($i = $n; $i >= 2; $i--) {
