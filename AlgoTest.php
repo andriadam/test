@@ -266,3 +266,144 @@ function generateArrayWithSumZero($N)
 
   return $array;
 }
+
+function faktorial($n)
+{
+  if ($n == 0 || $n == 1) {
+    return 1;
+  } else {
+    return $n * faktorial($n - 1);
+  }
+}
+
+function faktorial($n)
+{
+  if ($n == 0 || $n == 1) {
+    return 1;
+  } else {
+    return $n * faktorial($n - 1);
+  }
+}
+
+function cariPrimaTerbesar($n)
+{
+  for ($i = $n; $i >= 2; $i--) {
+    if (isPrime($i)) {
+      return $i;
+    }
+  }
+  return null;
+}
+
+function maksimumSubarray($arr)
+{
+  $n = count($arr);
+  if ($n == 0) {
+    return 0;
+  }
+
+  $maksimum_global = $maksimum_lokal = $arr[0];
+
+  for ($i = 1; $i < $n; $i++) {
+    $maksimum_lokal = max($arr[$i], $maksimum_lokal + $arr[$i]);
+    $maksimum_global = max($maksimum_global, $maksimum_lokal);
+  }
+
+  return $maksimum_global;
+}
+
+function tanggalTerdekat($awal, $daftarTanggal)
+{
+  $tanggalTerdekat = null;
+
+  foreach ($daftarTanggal as $tanggal) {
+    if ($tanggal >= $awal && ($tanggalTerdekat === null || $tanggal < $tanggalTerdekat)) {
+      $tanggalTerdekat = $tanggal;
+    }
+  }
+
+  return $tanggalTerdekat;
+}
+
+function forLoop($n)
+{
+  if ($n > 0) {
+    forLoop($n - 1);
+    echo $n . " ";
+  }
+}
+
+function cariAngkaSamaArr($arr, $arr2)
+{
+  $angkaSama = [];
+
+  foreach ($arr as $elem) {
+    if (in_array($elem, $arr2) && !in_array($elem, $angkaSama)) {
+      $angkaSama[] = $elem;
+    }
+  }
+  return $angkaSama;
+}
+
+function mapStoreData($stores)
+{
+  $store_data = [];
+
+  foreach ($stores as $store) {
+    $store_data[$store->area]["total_stores"] = ($store_data[$store->area]["total_stores"] ?? 0) + 1;
+    $store_data[$store->area]["stores"][] = $store->name;
+  }
+
+  $total_stores = array_sum(array_column($store_data, "total_stores"));
+
+  $output = [
+    "total_stores" => $total_stores,
+    "areas" => $store_data,
+  ];
+
+  return $output;
+}
+
+function terbilang($number)
+{
+  $text = [
+    "", "satu", "dua", "tiga", "empat", "lima", "enam", "tujuh", "delapan", "sembilan"
+  ];
+  if ($number < 10) {
+    return $text[$number];
+  } elseif ($number < 20) {
+    return $text[$number - 10] . " belas";
+  } elseif ($number < 100) {
+    $puluhan = floor($number / 10);
+    $sisa = $number % 10;
+    return $text[$puluhan] . " puluh" . ($sisa > 0 ? " " . $text[$sisa] : "");
+  } elseif ($number < 1000) {
+    $ratusan = floor($number / 100);
+    $sisa = $number % 100;
+    return $text[$ratusan] . " ratus" . ($sisa > 0 ? " " . terbilang($sisa) : "");
+  } elseif ($number < 1000000) {
+    $ribuan = floor($number / 1000);
+    $sisa = $number % 1000;
+    return terbilang($ribuan) . " ribu" . ($sisa > 0 ? " " . terbilang($sisa) : "");
+  } elseif ($number < 1000000000) {
+    $jutaan = floor($number / 1000000);
+    $sisa = $number % 1000000;
+    return terbilang($jutaan) . " juta" . ($sisa > 0 ? " " . terbilang($sisa) : "");
+  } else {
+    return "Angka terlalu besar";
+  }
+}
+
+function swapValues(&$A, &$B)
+{
+  $A = $A + $B;
+  $B = $A - $B;
+  $A = $A - $B;
+}
+
+function extractPartFromURL($url, $delimiter, $start, $length)
+{
+  $parts = explode($delimiter, $url);
+  $result = implode($delimiter, array_slice($parts, $start, $length));
+  return $result;
+}
